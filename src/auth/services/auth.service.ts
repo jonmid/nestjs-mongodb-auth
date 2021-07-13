@@ -10,7 +10,7 @@ export class AuthService {
     const user = await this.usersService.findByEmail(email);
     const isMatch = await bcrypt.compare(password, user.password);
     if (user && isMatch) {
-      const { password, ...rta } = user;
+      const { password, ...rta } = user.toJSON();
       return rta;
     }
     return null;
